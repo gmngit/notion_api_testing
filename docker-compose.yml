@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  api-tests:
+    image: "api-tests-notion"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    command: /bin/sh -c "pytest -sv"
+    working_dir: /app
+    environment:
+      TOKEN: ${TOKEN}
+
+  allure-report:
+    image: "api-tests-notion"
+    volumes:
+      - ./:/app
+    command: /bin/sh -c "allure generate allure-results --clean -o allure-report"
+    working_dir: /app
