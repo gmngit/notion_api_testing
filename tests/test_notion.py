@@ -15,7 +15,7 @@ class TestNotion:
     def test_get_user(self, client, user_id, user_name):
         response = client.get_user_by_id(user_id)
 
-        ResponseAssertion.assert_status_code(response, HTTPStatus.BAD_REQUEST)
+        ResponseAssertion.assert_status_code(response, HTTPStatus.OK)
         ResponseAssertion.assert_response_body(response, models_response.UserModel)
         assert response.json()['id'] == user_id
 
