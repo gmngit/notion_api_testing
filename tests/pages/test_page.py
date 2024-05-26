@@ -8,17 +8,7 @@ from src.objects import Block
 logger = logging.getLogger("logger_tests")
 
 
-class TestNotion:
-
-    # -------positive-------
-
-    def test_get_user(self, client, user_id, user_name):
-        response = client.get_user_by_id(user_id)
-
-        ResponseAssertion.assert_status_code(response, HTTPStatus.OK)
-        ResponseAssertion.assert_response_body(response, models_response.UserModel)
-        assert response.json()['id'] == user_id
-
+class TestPage:
     def test_create_page(self, client, create_page):
         ResponseAssertion.assert_status_code(create_page, HTTPStatus.OK)
         ResponseAssertion.assert_response_body(create_page, models_response.CreatedPage)
@@ -73,21 +63,13 @@ class TestNotion:
         response = client.get_page(page_id)
         assert response.json()['in_trash'] == request_body['in_trash']
 
-    # -------negative-------
-
-    def test_get_user_not_exist(self, client):
-        user_id = "1a8da1e5-bd1c-450a-b335-a963354f9a3d"
-        response = client.get_user_by_id(user_id)
-        ResponseAssertion.assert_status_code(response, HTTPStatus.NOT_FOUND)
-        ResponseAssertion.assert_response_body(response, models_response.NotFound)
-
     def test_get_page_invalid_id(self, client):
         page_id = "abd75eea8a94e2e8cfff644a261ab2d"
         response = client.get_page(page_id)
         ResponseAssertion.assert_status_code(response, HTTPStatus.BAD_REQUEST)
         ResponseAssertion.assert_response_body(response, models_response.BadRequest)
 
-    def test_delete_block_not_exist(self, client, blocks_id):
+    def test_delete_block_not_exist(self, client):
         block_id = "ec13a87b-7f0d-428b-9bf0-b80004d5b93c"
         response = client.delete_block(block_id)
         ResponseAssertion.assert_status_code(response, HTTPStatus.BAD_REQUEST)
