@@ -1,6 +1,8 @@
 ## Automation API tests for Notion app
 https://notion.so
 
+![Header](https://github.com/gmngit/notion_api_testing/blob/main/assets/image.jpg)
+
 ### List of tests
 
 ---
