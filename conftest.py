@@ -47,7 +47,6 @@ def client(bearer_token, request):
 
 
 @pytest.fixture(scope='class')
-@allure.title("Prepare a name for user")
 def user_name():
     name = "Mairo"
     return name
@@ -62,7 +61,6 @@ def user_id(client, user_name):
 
 
 @pytest.fixture(scope='class')
-@allure.title("Prepare a request body for page")
 def request_body_page():
     page_id = "01714444-3760-495f-af0a-fb1bcfc0f640"
     cover_url = "https://images.unsplash.com/photo-1648437595587-e6a8b0cdf1f9?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb"
@@ -137,7 +135,6 @@ def page_id(create_page):
 
 
 @pytest.fixture(scope='class')
-@allure.title("Prepare a request body for blocks")
 def request_body_block():
     children = [
         {
