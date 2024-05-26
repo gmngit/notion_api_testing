@@ -39,5 +39,6 @@ def client(bearer_token, request):
     client.set_session_authentication()
     client.add_header("Notion-Version", "2022-06-28")
     yield client
-    logger.info(f"\nSession was closed")
-    client.session.close()
+    with allure.step("Close session"):
+        logger.info(f"\nSession was closed")
+        client.session.close()
